@@ -18,8 +18,10 @@
       "esri/views/MapView",
       "esri/widgets/BasemapGallery",
       "esri/widgets/Locate",
-      "esri/widgets/Search"
-    ], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search) {   
+      "esri/widgets/Search",
+      "esri/Graphic",  
+      "esri/layers/GraphicsLayer" 
+    ], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, Graphic, GraphicsLayer) {   
 
       esriConfig.apiKey= "AAPTxy8BH1VEsoebNVZXo8HurOxCJM2SBFdn7xcvT1L38mvM8JqyGgY9I6ZreW_-CskCek5wBVwF7SEueg9kN6l8kkJXzv1l1OMA060-IPeO302BssrSrxYedw9j4tTgXYeam0aL0P3vclOI4HjPaMmO3pQweizFCRuDTWSVP42Vualv70iB8JLH7wMbh4v9QoxW_wZvHni7MCbxYsBO_7lPlXYTEHvezn4AyvYiYeVWFfx-TxXUAoY19Z4ueRRW_UTsAT1_DalpM85W";
       const map= new Map({
@@ -32,6 +34,31 @@
         zoom: 10, // Zoom level
         container: "viewDiv" // Div element
       });
+
+        const graphicsLayer = new GraphicsLayer();  
+        map.add(graphicsLayer);
+
+        const point = { //Create a point  
+        type: "point",  
+        longitude: -122.43298748156816,    //long lat of Painted Ladies 
+        latitude: 37.77750808683118
+      };
+
+        const simpleMarkerSymbol = {  
+        type: "simple-marker",  
+        color: [0, 0, 139],  // Color of blues rock
+        outline: {  
+          color: [255, 255, 255], // White  
+          width: 1
+        }  
+      };
+
+        const pointGraphic = new Graphic({  
+        geometry: point,  
+        symbol: simpleMarkerSymbol  
+      });
+      
+        graphicsLayer.add(pointGraphic);
 
       const basemapGallery = new BasemapGallery({
           view: view
