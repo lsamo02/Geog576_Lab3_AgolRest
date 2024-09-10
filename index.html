@@ -51,10 +51,33 @@
         outline: {  
           color: [255, 255, 255], // White  
           width: 1
-        }  
-
-
+        }
+        };
+       
+        // Create a polygon geometry
+        const polygon = {
+        type: "polygon", // autocasts as new Polygon()
+        rings: [[-122.43328854233351, 37.777633320428535], [-122.43295600000532, 37.775822923717996], [-122.4360673624609, 37.775322589190466], [-122.4364428717219, 37.777001664541196]]
       };
+
+        // Create a symbol for rendering the graphic
+        const fillSymbol = {
+          type: "simple-fill", // autocasts as new SimpleFillSymbol()
+          color: "blue",
+          outline: {
+            // autocasts as new SimpleLineSymbol()
+            color: [255, 255, 255],
+            width: 1
+          }
+        };
+
+        const polygonGraphic = new Graphic({
+          geometry: polygon,
+          symbol: fillSymbol
+        });
+
+
+      
 
       const popupTemplate = {
           title: "{Name}",
@@ -68,13 +91,13 @@
         const pointGraphic = new Graphic({  
         geometry: point,  
         symbol: simpleMarkerSymbol,
-        
         attributes: attributes,
         popupTemplate: popupTemplate
+
         
       });
 
-        graphicsLayer.add(pointGraphic);
+        graphicsLayer.addMany([pointGraphic, polygonGraphic]);
 
       const basemapGallery = new BasemapGallery({
           view: view
