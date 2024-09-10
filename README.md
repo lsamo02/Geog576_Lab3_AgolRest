@@ -1,2 +1,2 @@
 # esrijs
-Esri JS map for Geog 576
+Esri JS map accessing AGOL for Geog 576 
