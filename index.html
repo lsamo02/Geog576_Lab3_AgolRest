@@ -45,8 +45,9 @@
       };
 
         const simpleMarkerSymbol = {  
-        type: "simple-marker",  
-        color: [0, 0, 139],  // Color of blues rock
+        type: "simple-marker",
+        style: "trianlge",  
+        color: "pink", 
         outline: {  
           color: [255, 255, 255], // White  
           width: 1
@@ -57,7 +58,7 @@
         geometry: point,  
         symbol: simpleMarkerSymbol  
       });
-      
+
         graphicsLayer.add(pointGraphic);
 
       const basemapGallery = new BasemapGallery({
