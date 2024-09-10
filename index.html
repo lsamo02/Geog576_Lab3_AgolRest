@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Hello, world!</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+  
+  <!--calls for arcgis API's css file and JS library -->
+  <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.25/"></script>
+
+  <!--adds modules required for full screen map app-->
+  <script>  
+    require([
+      "esri/config", 
+      "esri/Map", 
+      "esri/views/MapView",
+      "esri/widgets/BasemapGallery",
+      "esri/widgets/Locate",
+      "esri/widgets/Search"
+    ], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search) {   
+
+      esriConfig.apiKey= "AAPTxy8BH1VEsoebNVZXo8HurOxCJM2SBFdn7xcvT1L38mvM8JqyGgY9I6ZreW_-CskCek5wBVwF7SEueg9kN6l8kkJXzv1l1OMA060-IPeO302BssrSrxYedw9j4tTgXYeam0aL0P3vclOI4HjPaMmO3pQweizFCRuDTWSVP42Vualv70iB8JLH7wMbh4v9QoxW_wZvHni7MCbxYsBO_7lPlXYTEHvezn4AyvYiYeVWFfx-TxXUAoY19Z4ueRRW_UTsAT1_DalpM85W";
+      const map= new Map({
+        basemap:"arcgis-dark-gray" // Basemap layer service
+      });
+      
+      const view = new MapView({
+        map: map,
+        center: [-122.40111922002323, 37.775978202622646], // Longitude, latitude for San Francisco
+        zoom: 10, // Zoom level
+        container: "viewDiv" // Div element
+      });
+
+      const basemapGallery = new BasemapGallery({
+          view: view
+      });
+
+      const locateBtn = new Locate({
+          view: view
+      });
+
+      const searchWidget = new Search({
+          view: view
+      });
+
+      view.ui.add(basemapGallery, {
+        position: "top-right"
+      });
+
+      view.ui.add(locateBtn, {
+          position: "top-left"
+      });
+
+      view.ui.add(searchWidget, {
+          position: "top-left",
+          index: 2
+      });
+
+    }); 
+   </script>
+
+  <!--css to make a fll screen map -->
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+</head>
+<body>
+  
+  <!--the div to display the map-->
+  <div id="viewDiv"></div> 
+
+</body>
+</html>
