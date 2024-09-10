@@ -76,14 +76,14 @@
           paths: [[ -122.47943154489253,37.82569938280154],[-122.47771493146514, 37.810545433658284]]
         };
 
-        const lineSymbol = {
+        const SimpleLineSymbol = {
           type: "simple-line", // autocasts as SimpleLineSymbol()
           color: "purple",
           width: 4
         };
 
         const polylineGraphic = new Graphic({
-          geometry: polyline,
+          geometry: SimpleLineSymbol,
           symbol: lineSymbol
         });
 
