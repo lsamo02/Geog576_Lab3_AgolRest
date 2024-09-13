@@ -24,8 +24,9 @@
       "esri/layers/FeatureLayer",
       "esri/widgets/Editor",
       "esri/widgets/Legend",
-      "esri/widgets/Expand"
-    ], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, Graphic, GraphicsLayer, FeatureLayer, Editor, Legend, Expand) {   
+      "esri/widgets/Expand",
+      "esri/core/reactiveUtils"
+    ], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, Graphic, GraphicsLayer, FeatureLayer, Editor, Legend, Expand, reactiveUtils) {   
 
       esriConfig.apiKey= "AAPTxy8BH1VEsoebNVZXo8HurOxCJM2SBFdn7xcvT1L38mvM8JqyGgY9I6ZreW_-CskCek5wBVwF7SEueg9kN6l8kkJXzv1l1OMA060-IPeO302BssrSrxYedw9j4tTgXYeam0aL0P3vclOI4HjPaMmO3pQweizFCRuDTWSVP42Vualv70iB8JLH7wMbh4v9QoxW_wZvHni7MCbxYsBO_7lPlXYTEHvezn4AyvYiYeVWFfx-TxXUAoY19Z4ueRRW_UTsAT1_DalpM85W";
       const map= new Map({
@@ -129,6 +130,20 @@
         content: basemapGallery
       });
 
+      reactiveUtils.watch(
+          () => basemapGallery.activeBasemap,
+          () => {
+            const mobileSize = view.heightBreakpoint === "xsmall" || view.widthBreakpoint === "xsmall";
+
+            if (mobileSize) {
+              bgExpand.collapse();
+            }
+          }
+        );
+
+      view.ui.add(bgExpand, "top-right");
+      });
+
       const locateBtn = new Locate({
           view: view
       });
@@ -141,8 +156,7 @@
       //  position: "bottom-right"
     // });
 
-      view.ui.add(bgExpand, "bottom-right");
-    });
+
 
       view.ui.add(locateBtn, {
           position: "top-left"
