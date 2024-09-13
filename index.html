@@ -145,6 +145,8 @@
       url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/US_Airports_Geog576/FeatureServer"
       });
 
+      map.add(usaairports);
+
 
       // Define a pop-up for usaeduLayer
       const popupEduusa = {
@@ -162,7 +164,7 @@
       });
 
       //adding the feature layer to the map
-      map.add(usaeduLayer, usaairports);
+      map.add(usaeduLayer);
 
     
 
