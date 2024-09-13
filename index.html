@@ -141,6 +141,11 @@
           index: 2
       });
 
+      const usaairports = new FeatureLayer({
+      url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/US_Airports_Geog576/FeatureServer"
+      });
+
+
       // Define a pop-up for usaeduLayer
       const popupEduusa = {
         "title": "EDUs",
@@ -157,8 +162,9 @@
       });
 
       //adding the feature layer to the map
-      map.add(usaeduLayer);
+      map.add(usaeduLayer, usaairports);
 
+    
 
     }); 
    </script>
