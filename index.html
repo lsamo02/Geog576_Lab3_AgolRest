@@ -220,7 +220,7 @@
 
       //adding the const for the feature layer
       const myAirports = new FeatureLayer({
-        url: "YOUR URL HERE",
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/airports_visited/FeatureServer",
       
         //adding the popup here
         outFields: ["AirportCode"],
@@ -242,9 +242,8 @@
       }); // End Editor constructor
 
       // Add the widget to the view
-      view.ui.add(editor, "top-right");
+      view.ui.add(editor, "top-left");
 
-    
 
     }); 
    </script>
