@@ -152,6 +152,16 @@
         }
       }
 
+      const myairportRenderer = {
+        "type": "simple",
+        "symbol": {
+          "type": "picture-marker",
+          "url": "airport_pink.png",
+          "width": "18px",
+          "height": "18px"
+        }
+      }
+
       const helicopterRenderer = {
         "type": "simple",
         "symbol": {
@@ -186,8 +196,8 @@
             const myairportLabels = {
         symbol: {
           type: "text",
-          color: "#FFFFFF",
-          haloColor: "pink",
+          color: "#000000",
+          haloColor: "#EA33F7",
           haloSize: "2px",
           font: {
             size: "12px",
@@ -241,8 +251,8 @@
       //adding the const for the feature layer
       const myAirports = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/airports_visited/FeatureServer",
-        renderer: airportRenderer,
-        labelingInfo: [airportLabels],
+        renderer: myairportRenderer,
+        labelingInfo: [myairportLabels],
       
         //adding the popup here
         outFields: ["AirportCode"],
