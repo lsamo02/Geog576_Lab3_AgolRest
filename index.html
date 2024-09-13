@@ -25,8 +25,10 @@
       "esri/widgets/Editor",
       "esri/widgets/Legend",
       "esri/widgets/Expand",
-      "esri/core/reactiveUtils"
-    ], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, Graphic, GraphicsLayer, FeatureLayer, Editor, Legend, Expand, reactiveUtils) {   
+      "esri/core/reactiveUtils",
+      "esri/widgets/Legend"
+
+    ], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, Graphic, GraphicsLayer, FeatureLayer, Editor, Legend, Expand, reactiveUtils, Legend) {   
 
       esriConfig.apiKey= "AAPTxy8BH1VEsoebNVZXo8HurOxCJM2SBFdn7xcvT1L38mvM8JqyGgY9I6ZreW_-CskCek5wBVwF7SEueg9kN6l8kkJXzv1l1OMA060-IPeO302BssrSrxYedw9j4tTgXYeam0aL0P3vclOI4HjPaMmO3pQweizFCRuDTWSVP42Vualv70iB8JLH7wMbh4v9QoxW_wZvHni7MCbxYsBO_7lPlXYTEHvezn4AyvYiYeVWFfx-TxXUAoY19Z4ueRRW_UTsAT1_DalpM85W";
       const map= new Map({
@@ -98,8 +100,6 @@
         });
 
 
-      
-
       const popupTemplate = {
           title: "{Name}",
           content: "{Description}"
@@ -120,8 +120,6 @@
 
         graphicsLayer.addMany([pointGraphic, polygonGraphic, polylineGraphic]);
 
-
-
       const locateBtn = new Locate({
           view: view
       });
@@ -129,12 +127,6 @@
       const searchWidget = new Search({
           view: view
       });
-
-      //view.ui.add(basemapGallery, {
-      //  position: "bottom-right"
-    // });
-
-
 
       view.ui.add(locateBtn, {
           position: "top-left"
@@ -195,8 +187,8 @@
         }
       };
 
-            //const to make the airport labels
-            const myairportLabels = {
+      //const to make the airport labels
+      const myairportLabels = {
         symbol: {
           type: "text",
           color: "#000000",
@@ -302,6 +294,25 @@
 
       view.ui.add(bgExpand, "top-right");
       });
+
+      view.when(() => {
+          // get the first layer in the collection of operational layers in the WebMap
+          // when the resources in the MapView have loaded.
+          const featureLayer = webmap.layers.getItemAt(0);
+
+          const legend = new Legend({
+            view: view,
+            layerInfos: [
+              {
+                layer: featureLayer,
+                title: "Airports"
+              }
+            ]
+          });
+
+          // Add widget to the bottom right corner of the view
+          view.ui.add(legend, "bottom-left");
+        });
 
     
    </script>
