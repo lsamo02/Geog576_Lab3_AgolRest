@@ -153,7 +153,8 @@
 
       const usaairports = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/US_Airports_Geog576/FeatureServer",
-        renderer: airportRenderer
+        renderer: airportRenderer,
+        definitionExpression: "Fac_Type = 'AIRPORT'"
       });
 
       map.add(usaairports);
