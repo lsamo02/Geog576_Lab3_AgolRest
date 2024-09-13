@@ -295,25 +295,11 @@
       view.ui.add(bgExpand, "bottom-right");
       });
 
-      view.when(() => {
-          // get the first layer in the collection of operational layers in the WebMap
-          // when the resources in the MapView have loaded.
-          const featureLayer = webmap.layers.getItemAt(0);
+      let legend = new Legend({
+        view: view
+      });
 
-          const legend = new Legend({
-            view: view,
-            layerInfos: [
-              {
-                layer: featureLayer,
-                title: "Airports"
-              }
-            ]
-          });
-
-          // Add widget to the bottom right corner of the view
-          view.ui.add(legend, "bottom-left");
-        });
-
+      view.ui.add(legend, "bottom-right");
     
    </script>
 
