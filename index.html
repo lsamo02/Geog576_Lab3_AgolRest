@@ -151,6 +151,16 @@
         }
       }
 
+      const helicopterRenderer = {
+        "type": "simple",
+        "symbol": {
+          "type": "picture-marker",
+          "url": "helicopter_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png",
+          "width": "18px",
+          "height": "18px"
+        }
+      }
+
       //const to make the airport labels
       const airportLabels = {
         symbol: {
@@ -177,6 +187,14 @@
         definitionExpression: "Fac_Type = 'AIRPORT'",
         labelingInfo: [airportLabels]
       });
+
+      const usaheliports = new FeatureLayer({
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/US_Airports_Geog576/FeatureServer",
+        renderer: airportRenderer,
+        definitionExpression: "Fac_Type = 'HELIPORT'",
+        labelingInfo: [airportLabels]
+      });
+
 
       map.add(usaairports);
 
