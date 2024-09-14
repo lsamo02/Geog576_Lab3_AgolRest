@@ -87,34 +87,14 @@
           width: 4
         };
 
-        const linepopupTemplate = {
-          title: "{Name}",
-          content: "{Description}"
-          }
-          const lnattributes = {
-            Name: "Golden Gate Bridge",
-            Description: "Iconic Red Bridge"
-          }
-
         const polylineGraphic = new Graphic({
           geometry: polyline,
-          symbol: lineSymbol,
-          popupTemplate: linepopupTemplate
+          symbol: lineSymbol
         });
-
-        const polypopupTemplate = {
-          title: "{Name}",
-          content: "{Description}"
-          }
-          const polyattributes = {
-            Name: "Alamo Square",
-            Description: "Park where Painted Ladies and scenic view of San Francisco area visible"
-          }
 
         const polygonGraphic = new Graphic({
           geometry: polygon,
-          symbol: fillSymbol,
-          popupTemplate:polypopupTemplate
+          symbol: fillSymbol
         });
 
       const popupTemplate = {
